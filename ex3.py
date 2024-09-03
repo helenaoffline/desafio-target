@@ -4,7 +4,8 @@ def calcular_estatisticas_faturamento(arquivo_json):
     with open(arquivo_json, 'r') as file:
         faturamento_data = json.load(file)
     
-    faturamentos_validos = [dia["faturamento"] for dia in faturamento_data if dia["faturamento"] not in [None, 0]]
+    # Ajuste para acessar a chave "valor" no lugar de "faturamento"
+    faturamentos_validos = [dia["valor"] for dia in faturamento_data if dia["valor"] not in [None, 0]]
 
     if not faturamentos_validos:
         print("Não há dias com faturamento válido para calcular as estatísticas.")
@@ -19,4 +20,5 @@ def calcular_estatisticas_faturamento(arquivo_json):
     print(f"Maior faturamento em um dia do mês: R$ {maior_faturamento:.2f}")
     print(f"Número de dias com faturamento acima da média mensal: {dias_acima_da_media}")
 
-calcular_estatisticas_faturamento('faturamento.json')
+# Chama a função com o nome correto do arquivo
+calcular_estatisticas_faturamento('dados.json')
